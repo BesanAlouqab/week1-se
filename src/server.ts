@@ -1,11 +1,10 @@
 import express from "express";
 
 const app = express();
-const PORT = 3000;
 
 app.use(express.json());
 
-// أول API: عرض المساقات
+// عرض المساقات
 app.get("/courses", (req, res) => {
   res.json([
     { id: 1, name: "Java" },
@@ -13,11 +12,11 @@ app.get("/courses", (req, res) => {
     { id: 3, name: "Software Engineering" }
   ]);
 });
-// ثاني API: تسجيل الطالب بمساق
+
+// تسجيل الطالب بمساق
 app.post("/enrolments", (req, res) => {
   const { studentId, courseId } = req.body;
 
-  // التحقق من صحة البيانات
   if (
     typeof studentId !== "number" ||
     typeof courseId !== "number" ||
@@ -29,14 +28,11 @@ app.post("/enrolments", (req, res) => {
     });
   }
 
-  // نجاح التسجيل
   res.status(201).json({
     message: "Enrolment created successfully",
     studentId,
     courseId
   });
 });
-// تشغيل السيرفر
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+
+export default app;

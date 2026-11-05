@@ -1,4 +1,4 @@
-function calculateGrade(score: number, total: number): {
+export function calculateGrade(score: number, total: number): {
   percentage: number;
   letter: string;
 } {
